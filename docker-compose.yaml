@@ -1,18 +1,17 @@
-﻿wordpress:
- image : wordpress
- links: wordpress_db:mysql
- ports: 8080:80
-
+wordpress:
+  image: wordpress
+  links:
+    - 'wordpress_db:mysql'
+  ports: '8080:80'
 wordpress_db:
-    image: mariadb
-    environment:
-        MYSQL_ROOT_PASSWORD : mani12
-
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: mani12
 phpmyadmin:
-    image: corbinu/docker-phpmyadmin
-    ports: 8081:80
-    environment:
-        MYSQL_USERNAME : root
-        MYSQL_ROOT_PASSWORD : root
-    links:wordpress_db: mysql
-
+  image: corbinu/docker-phpmyadmin
+  ports: '8081:80'
+  environment:
+    MYSQL_USERNAME: root
+    MYSQL_ROOT_PASSWORD: root
+  links:
+    '-wordpress_db': mysql
